@@ -4,7 +4,7 @@
     <ul>
       <li v-for="link in links"><a v-bind:href="link.src">{{ link.name }}</a></li>
     </ul>
-    <form>
+    <form v-on:submit.prevent="post">
       <!-- title -->
       <div class="form__group">
         <label class="group__label" for="title"><strong>Title: </strong></label>
@@ -39,7 +39,9 @@
           </select>
         </div>
       </div>
+      <button type="submit">Add Blog</button>
     </form>
+
     <!-- preview -->
     <div class="preview">
       <h3>Preview Blog</h3>
@@ -76,7 +78,15 @@ export default {
     };
   },
   methods: {
-
+    post: function () {
+      this.$http.post('https://jsonplaceholder.typicode.com/posts', {
+        title: this.blog.title,
+        body: this.blog.text,
+        userId: 1
+      }).then(function (data) {
+        console.log(data);
+      });
+    }
   }
 }
 </script>
