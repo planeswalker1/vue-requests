@@ -1,17 +1,22 @@
 <template>
   <div class="container">
-    <p>new post form</p>
+    <appForm></appForm>
   </div>
 </template>
 
 <script>
-export default {
-  data() {
-    return {
+import appForm from './components/new-blog'
 
-    };
+export default {
+  components: {
+    appForm: appForm
+  },
+  data() {
+      return {
+
+      };
+    }
   }
-}
 </script>
 
 <style>
