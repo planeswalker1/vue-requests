@@ -4,7 +4,7 @@
     <ul>
       <li v-for="link in links"><a v-bind:href="link.src">{{ link.name }}</a></li>
     </ul>
-    <form v-on:submit.prevent="post">
+    <form v-on:submit.prevent="post" v-if="!submitted">
       <!-- title -->
       <div class="form__group">
         <label class="group__label" for="title"><strong>Title: </strong></label>
@@ -42,6 +42,11 @@
       <button type="submit">Add Blog</button>
     </form>
 
+    <!-- form sent message -->
+    <div v-if="submitted">
+      <h3>Thanks for adding your post</h3>
+    </div>
+
     <!-- preview -->
     <div class="preview">
       <h3>Preview Blog</h3>
@@ -74,7 +79,8 @@ export default {
         {src: 'http://colorlessenergy.github.io/', name: 'About'}
       ],
       categories: ['HTML', 'CSS', 'JavaScript', 'Other'],
-      authors: ['Angel', 'Brian','Christian','Daniel', 'David']
+      authors: ['Angel', 'Brian','Christian','Daniel', 'David'],
+      submitted: false
     };
   },
   methods: {
@@ -85,6 +91,7 @@ export default {
         userId: 1
       }).then(function (data) {
         console.log(data);
+        this.submitted = true;
       });
     }
   }
