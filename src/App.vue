@@ -7,13 +7,25 @@
         This website was made to practice Vue and vue-resource
       </h1>
 
-      <p>Check out these links below:</p>
+      <p>Check out these links below</p>
       <ul>
         <li v-for="link in links"><a v-bind:href="link.src">{{ link.title }}</a></li>
       </ul>
     </header>
     <main>
-      <appForm></appForm>
+    <keep-alive>
+      <component v-bind:is="component">
+        <template slot="nav">
+          <nav>
+            <ul class="nav">
+              <li v-for="item in components">
+                <a href="#" v-on:click="component=item.name">{{ item.title }}</a>
+              </li>
+            </ul>
+          </nav>
+        </template>
+      </component>
+    </keep-alive>
     </main>
     <footer>
       <p>&copy; Vue is cool 2018</p>

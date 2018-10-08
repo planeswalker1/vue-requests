@@ -1,6 +1,10 @@
 <template>
   <div class="blog">
     <h2>Add a New Blog Post</h2>
+
+    <!-- nav slot -->
+    <slot name="nav"></slot>
+
     <form v-on:submit.prevent="post" v-if="!submitted">
       <!-- title -->
       <div class="form__group">

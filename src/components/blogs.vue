@@ -1,6 +1,10 @@
 <template>
   <div class="blogs">
     <h2>All Blog Articles</h2>
+
+    <!-- nav slot -->
+    <slot name="nav"></slot>
+
     <div v-for="blog in blogs" class="blog">
       <h2>{{ blog.title }}</h2>
       <article>
